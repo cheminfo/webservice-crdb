@@ -1,0 +1,24 @@
+{
+  "name": "webservice-crdb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cheminfo/webservice-crdb.git"
+  },
+  "author": "Michaël Zasso",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cheminfo/webservice-crdb/issues"
+  },
+  "homepage": "https://github.com/cheminfo/webservice-crdb#readme",
+  "private": true,
+  "dependencies": {
+    "crdb": "^1.0.0-1",
+    "openchemlib": "^3.0.0"
+  }
+}
