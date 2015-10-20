@@ -27,8 +27,9 @@ try {
     process.exit(1);
 }
 
-const data = fs.readFileSync(path.resolve(__dirname, config.crd));
+let data = fs.readFileSync(path.resolve(__dirname, config.crd));
 const crd = crdb.readCRD(data);
+data = null;
 
 exports.run = respond;
 
