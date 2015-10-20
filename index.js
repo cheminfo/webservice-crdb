@@ -33,6 +33,7 @@ data = null;
 
 exports.run = respond;
 
+let theTimeout;
 function respond(message) {
     const query = message.query;
     const fields = Object.keys(query);
@@ -102,6 +103,14 @@ function respond(message) {
             ste: crd.ste[idx]
         };
     }
+
+    // Presort for faster next query
+    if (theTimeout) {
+        clearTimeout(theTimeout);
+    }
+    theTimeout = setTimeout(function () {
+        crd.reset();
+    }, 50);
 
     return Promise.resolve({
         content: result
