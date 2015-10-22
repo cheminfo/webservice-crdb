@@ -92,6 +92,7 @@ function respond(message) {
         result[i] = {
             id: mol.id,
             mol: {type: 'oclid', value: mol.oclid},
+            dist: mol.dist,
             em: crd.em[idx],
             mw: crd.mw[idx],
             logp: crd.logp[idx],
