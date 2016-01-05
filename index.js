@@ -1,17 +1,6 @@
 'use strict';
 
 const MAX_VALUE = 0xffffffff;
-const NUMERIC_FIELDS = [
-    'em',
-    'mw',
-    'logp',
-    'logs',
-    'psa',
-    'acc',
-    'don',
-    'rot',
-    'ste'
-];
 
 const crdb = require('crdb');
 const fs = require('fs');
@@ -29,6 +18,15 @@ try {
 
 let data = fs.readFileSync(path.resolve(__dirname, config.crd));
 const crd = crdb.readCRD(data);
+
+let fieldNames = Object.keys(crd.fieldTypes);
+const NUMERIC_FIELDS = [];
+for (let name of fieldNames) {
+    if (crd.fieldTypes[name] === 'number') {
+        NUMERIC_FIELDS.push(name);
+    }
+}
+
 data = null;
 
 exports.run = respond;
@@ -90,19 +88,11 @@ function respond(message) {
         var mol = crd.molecules[i];
         var idx = crd.molecules[i].sortid;
         result[i] = {
-            id: mol.id,
-            mol: {type: 'oclid', value: mol.oclid},
-            dist: mol.dist,
-            em: crd.em[idx],
-            mw: crd.mw[idx],
-            logp: crd.logp[idx],
-            logs: crd.logs[idx],
-            psa: crd.psa[idx],
-            acc: crd.acc[idx],
-            don: crd.don[idx],
-            rot: crd.rot[idx],
-            ste: crd.ste[idx]
+            mol: {type: 'oclid', value: mol.oclid}
         };
+        for (var j = 0; j < fieldNames.length; j++) {
+            result[i][fieldNames[j]] = crd.fields[fieldNames[j]][i];
+        }
     }
 
     // Presort for faster next query
