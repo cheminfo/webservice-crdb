@@ -92,7 +92,7 @@ function respond(message) {
             dist: mol.dist
         };
         for (var j = 0; j < fieldNames.length; j++) {
-            result[i][fieldNames[j]] = crd.fields[fieldNames[j]][i];
+            result[i][fieldNames[j]] = crd.fields[fieldNames[j]][idx];
         }
     }
 
