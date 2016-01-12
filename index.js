@@ -89,7 +89,8 @@ function respond(message) {
         var idx = crd.molecules[i].sortid;
         result[i] = {
             mol: {type: 'oclid', value: mol.oclid},
-            dist: mol.dist
+            dist: mol.dist,
+            mw: mol.mw
         };
         for (var j = 0; j < fieldNames.length; j++) {
             result[i][fieldNames[j]] = crd.fields[fieldNames[j]][idx];
